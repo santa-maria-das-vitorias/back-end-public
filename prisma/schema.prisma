@@ -1,0 +1,55 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["dbp", "public_stats"]
+}
+
+model Category {
+  id       Int               @id @default(autoincrement())
+  title    String            @db.VarChar(100)
+  slug     String            @unique @db.VarChar(100)
+  articles ArticleCategory[] @relation("CategoryArticles")
+
+  @@map("categories")
+  @@schema("dbp")
+}
+
+model Article {
+  id         Int               @id @default(autoincrement())
+  title      String
+  slug       String            @unique
+  date       DateTime
+  image      String?
+  author     String?
+  have_image Boolean           @default(false)
+  content    String?
+  categories ArticleCategory[] @relation("ArticleCategories")
+
+  @@map("articles")
+  @@schema("dbp")
+}
+
+model ArticleCategory {
+  article_id  Int
+  category_id Int
+  article     Article  @relation("ArticleCategories", fields: [article_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_article")
+  category    Category @relation("CategoryArticles", fields: [category_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_category")
+
+  @@id([article_id, category_id])
+  @@map("article_categories")
+  @@schema("dbp")
+}
+
+model ArticleStat {
+  id  Int @id @default(autoincrement())
+  article_slug String
+  stat  String @db.VarChar(50)
+
+  @@map("article_stats")
+  @@schema("public_stats")
+}
