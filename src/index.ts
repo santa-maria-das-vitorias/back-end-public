@@ -21,7 +21,7 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
-// API Key authentication middleware for all API routes
+// Configuração de CORS
 const origin = process.env.DEVELOPMENT === 'false'
   ? process.env.PROD_FRONT_URL
   : process.env.DEV_FRONT_URL;
@@ -36,8 +36,8 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
+// Middleware
 const cache = apicache.middleware;
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -46,9 +46,7 @@ const limiter = rateLimit({
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
-
 app.use(express.json());
-
 app.use(limiter);
 app.use(cache('1 hour'));
 app.use(helmet());
