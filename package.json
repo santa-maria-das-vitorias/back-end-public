@@ -11,7 +11,7 @@
     "generate-key": "node scripts/generate_api_key.js"
   },
   "engines": {
-    "node": "23.5.0"
+    "node": "18.x"
   },
   "keywords": [],
   "author": "",
