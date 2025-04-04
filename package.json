@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^6.4.1",
+    "@prisma/client": "^6.5.0",
     "apicache": "^1.6.3",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
