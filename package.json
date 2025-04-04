@@ -7,7 +7,7 @@
     "dev": "ts-node src/index.ts",
     "build": "tsc",
     "start": "node .dist/index.js",
-    "postinstall": "prisma generate --schema=prisma/schema.prisma && tsc",
+    "postinstall": "if [ -f prisma/schema.prisma ]; then prisma generate --schema=prisma/schema.prisma && tsc; else echo 'Prisma schema not found'; exit 1; fi",
     "generate-key": "node scripts/generate_api_key.js"
   },
   "engines": {
