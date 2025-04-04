@@ -8,10 +8,5 @@
         "includeFiles": ["prisma/**"]
       }
     }
-  ],
-  "functions": {
-    "api/*": {
-      "includeFiles": "prisma/**"
-    }
-  }
+  ]
 }
