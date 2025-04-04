@@ -44,6 +44,8 @@ const limiter = rateLimit({
   message: 'Muitas requisições criadas a partir deste IP, por favor tente novamente após 15 minutos',
 });
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
 app.use(express.json());
 app.use(limiter);
 app.use(cache('1 hour'));
@@ -51,6 +53,11 @@ app.use(helmet());
 app.use(compression());
 
 app.use('/api', apiKeyAuth);
+
+// Root route to serve index.html
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: './public' });
+});
 
 // Rotas
 app.use('/api/categories', categoryRoutes);
