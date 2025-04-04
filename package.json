@@ -7,11 +7,11 @@
     "dev": "ts-node src/index.ts",
     "build": "tsc",
     "start": "node .dist/index.js",
-    "postinstall": "prisma generate --schema=./prisma/schema.prisma && tsc",
+    "postinstall": "prisma generate --schema=./schema.prisma && tsc",
     "generate-key": "node scripts/generate_api_key.js"
   },
   "prisma": {
-    "schema": "./prisma/schema.prisma"
+    "schema": "./schema.prisma"
   },
   "engines": {
     "node": "22.x"
