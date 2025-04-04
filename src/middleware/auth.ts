@@ -4,14 +4,21 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const API_SECRET_KEY = process.env.API_SECRET_KEY;
+const IS_DEVELOPMENT = process.env.DEVELOPMENT === 'true';
 
 /**
  * Middleware to verify the API key in the request header
  * 
  * This middleware checks for a valid API key in the x-api-key header.
  * If the key is missing or invalid, the request is rejected with a 401 status.
-*/
+ */
 export const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
+  // Skip authentication if in development mode
+  if (IS_DEVELOPMENT) {
+    console.log('Development mode enabled. Skipping API key authentication.');
+    return next();
+  }
+
   const apiKey = req.headers['x-api-key'] as string;
 
   // Check if API key exists in the environment variables

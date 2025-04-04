@@ -22,7 +22,6 @@
     "express-rate-limit": "^7.5.0",
     "express-validator": "^7.2.1",
     "helmet": "^8.0.0",
-    "prisma": "^6.4.1",
     "redis": "^4.7.0"
   },
   "devDependencies": {
@@ -32,6 +31,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.5",
     "nodemon": "^3.1.9",
+    "prisma": "^6.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
