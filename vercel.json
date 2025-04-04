@@ -6,5 +6,9 @@
       "use": "vercel-sapper"
     }
   ],
-  "includeFiles": ["prisma/**"]
+  "functions": {
+    "api/*": {
+      "includeFiles": "prisma/**"
+    }
+  }
 }
