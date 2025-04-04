@@ -3,15 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "vercel-sapper",
-      "config": {
-        "includeFiles": ["prisma/**"]
-      }
+      "use": "vercel-sapper"
     }
-  ],
-  "functions": {
-    "api/*": {
-      "includeFiles": "prisma/**"
-    }
-  }
+  ]
 }
