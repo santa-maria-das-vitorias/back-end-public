@@ -1,7 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "dist/index.js" }
-  ],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist"
-}
